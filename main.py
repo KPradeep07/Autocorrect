@@ -44,7 +44,7 @@ def ping():
     return "Pong"
 
 
-@app.post("/suggest")
+@app.post("/correct_word")
 async def correct_word(params: Word):
     correct_word = correcter.correct_word(
         params.word, 
@@ -53,12 +53,11 @@ async def correct_word(params: Word):
 
     return correct_word
 
-
-@app.post("/suggest_with_key")
-async def suggest_with_key(params: Sentence):
-    correct_sentence = correcter.correct_sentence(
-        params.sentence,
-        CONFIG["match_score"],
-    )
+@app.post("/correct_sentence")
+async def correct_sentence(params: Sentence):
+    correct_sentence = correcter.correct_word(
+        params.sentence, 
+        CONFIG["match_score"]
+        )
 
     return correct_sentence
