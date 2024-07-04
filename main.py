@@ -61,3 +61,12 @@ async def correct_sentence(params: Sentence):
         )
 
     return correct_sentence
+
+@app.post("/correct_word1")
+async def correct_word1(params: Word):
+    correct_word = correcter.correct_word(
+        params.word, 
+        CONFIG["match_score"]
+        )
+
+    return correct_word
